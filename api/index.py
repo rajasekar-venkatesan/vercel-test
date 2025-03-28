@@ -236,16 +236,19 @@ Your answer should be extremely concise and exactly match what is required for t
         
         # Extract the answer from Claude's response and clean it
         answer = ""
-        if message.content and len(message.content) > 0:
-            first_content = message.content[0]
-            if first_content.type == "text":
-                answer = first_content.text.strip()
+        for item in message.content:
+            if item["type"] == "text":
+                answer = item["text"]
+        # if message.content and len(message.content) > 0:
+        #     first_content = message.content[0]
+        #     if first_content.type == "text":
+        #         answer = first_content.text.strip()
         
         # Remove any markdown or code block formatting from the answer
-        answer = re.sub(r'```.*?\n', '', answer)  # Remove code block start
-        answer = re.sub(r'```', '', answer)       # Remove code block end
-        answer = re.sub(r'^Answer: ', '', answer) # Remove "Answer:" prefix
-        answer = answer.strip()
+        # answer = re.sub(r'```.*?\n', '', answer)  # Remove code block start
+        # answer = re.sub(r'```', '', answer)       # Remove code block end
+        # answer = re.sub(r'^Answer: ', '', answer) # Remove "Answer:" prefix
+        # answer = answer.strip()
         
         # Return the answer in the required format
         return {"answer": answer}
