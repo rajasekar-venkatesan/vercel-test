@@ -212,7 +212,6 @@ Your answer should be extremely concise and exactly match what is required for t
 """
         
         # Use Claude to generate the answer
-        print(prompt)
         message = client.messages.create(
             model="claude-3-7-sonnet-20250219",
             max_tokens=3000,
@@ -232,7 +231,6 @@ Your answer should be extremely concise and exactly match what is required for t
                 "budget_tokens": 2000
             }
         )
-        print(message)
         
         # Extract the answer from Claude's response and clean it
         answer = ""
