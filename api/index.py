@@ -12,7 +12,6 @@ import re
 from io import BytesIO
 import openpyxl
 from dotenv import load_dotenv
-from mangum import Mangum
 
 # Load environment variables
 load_dotenv()
@@ -257,4 +256,6 @@ async def health_check():
     return {"status": "ok", "message": "API is running"}
 
 # Handler for serverless deployment on Vercel
-handler = Mangum(app)
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
