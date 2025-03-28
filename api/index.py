@@ -215,7 +215,7 @@ Your answer should be extremely concise and exactly match what is required for t
         print(prompt)
         message = client.messages.create(
             model="claude-3-7-sonnet-20250219",
-            max_tokens=20000,
+            max_tokens=3000,
             messages=[
                 {
                     "role": "user",
@@ -229,7 +229,7 @@ Your answer should be extremely concise and exactly match what is required for t
             ],
             thinking={
                 "type": "enabled",
-                "budget_tokens": 16000
+                "budget_tokens": 2000
             }
         )
         print(message)
@@ -237,8 +237,8 @@ Your answer should be extremely concise and exactly match what is required for t
         # Extract the answer from Claude's response and clean it
         answer = ""
         for item in message.content:
-            if item["type"] == "text":
-                answer = item["text"]
+            if item.type == "text":
+                answer = item.text
         # if message.content and len(message.content) > 0:
         #     first_content = message.content[0]
         #     if first_content.type == "text":
